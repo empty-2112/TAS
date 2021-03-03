@@ -1,0 +1,314 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/main.min.css">
+
+    <!-- onoffcanvas stylesheet -->
+    <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+    <!-- animate.css stylesheet -->
+    <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+    <!-- metisMenu stylesheet -->
+    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
+
+
+    <!--[if lt IE 9]>
+      <script src="assets/lib/html5shiv/html5shiv.js"></script>
+      <script src="assets/lib/respond/respond.min.js"></script>
+      <![endif]-->
+
+    <script>
+        less = {
+            env: "development",
+            relativeUrls: false,
+            rootpath: "/assets/"
+        };
+    </script>
+    <link rel="stylesheet" href="assets/css/style-switcher.css">
+    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+</head>
+
+<body class="bg-dark dk">
+    <div class="bg-dark dk" id="wrap">
+        <div id="top">
+
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container-fluid">
+
+                    <header class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">
+                            <img src="assets/img/logohk.png" height="50px;">
+                        </a>
+                        <a href="/" class="navbar-brand">
+                            <img src="assets/img/logo.png" alt="">
+                        </a>
+                    </header>
+                    <div class="topnav">
+
+
+                        <div class="btn-group">
+                            <a href="/user/logout" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
+                                <i class="fa fa-power-off"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <img class="img-fluid" src="assets/img/logo_nk.jpg" width="60px;">
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    </div>
+                </div>
+            </nav>
+            <header class="head">
+                <div class="main-bar">
+                    <h3>
+                        <i class="fa fa-gears">
+                        </i>&nbsp; Quản Lý</h3>
+                </div>
+            </header>
+        </div>
+        <div id="left">
+            <div class="media user-media bg-dark dker">
+                <div class="user-media-toggleHover">
+                    <span class="fa fa-user"></span>
+                </div>
+                <div class="user-wrapper bg-dark">
+                    <a class="user-link">
+                        <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            <%= User.User%>
+                        </h5>
+                        <ul class="list-unstyled user-info">
+                            <li>
+                                <p href="">
+                                    <%=User.Position%>
+                                </p>
+                            </li>
+                            <li>
+                                <br>
+                                <br>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <ul id="menu" class="bg-drak dker">
+                <li class="nav-header">Menu</li>
+                <li class="nav-divider"></li>
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="link-title">&nbsp;Dashboard</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/DH">
+                        <i class="fa fa-table"></i>
+                        <span class="link-title">Quản lý đơn hàng</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="javascript:;">
+                        <i class="fa fa-building "></i>
+                        <span class="link-title">Xuất báo cáo</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="javascript:;">
+                        <i class="fa fa-gears"></i>
+                        <span class="link-title">Quản lý</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/TX">
+                                <i class="fa fa-angle-right"></i>&nbsp; Tài xế </a>
+                        </li>
+                        <li>
+                            <a href="/XB">
+                                <i class="fa fa-angle-right"></i>&nbsp; Xe bồn </a>
+                        </li>
+                        <li>
+                            <a href="/KH">
+                                <i class="fa fa-angle-right"></i>&nbsp; Khách hàng </a>
+                        </li>
+                        <% if(User.Position == "Quản Lý"){%>
+                            <li>
+                                <a href="/TK">
+                                    <i class="fa fa-angle-right"></i>&nbsp; Tài khoản </a>
+                            </li>
+                            <%}%>
+                    </ul>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="/user/logout">
+                        <i class="fa fa-sign-in"></i>
+                        <span class="link-title">
+                            Login Page
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#left -->
+        <div id="content">
+            <div class="outer">
+                <div class="inner bg-light lter">
+                    <!--Begin Datatables-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="box">
+                                <header>
+                                    <div class="icons"><i class="fa fa-table"></i></div>
+                                    <h5>Xe Bồn</h5>
+                                    <div class="toolbar">
+                                        <div class="btn-group">
+                                            <% if (User.Position == "Quản Lý" || User.Position == "Kinh Doanh" ) { %>
+                                                <a href="/XB/CREATE" class="btn btn-primary btn-flat">Thêm mới</a>
+                                                <% }; %>
+                                        </div>
+                                    </div>
+                                </header>
+                                <div id="collapse4" class="body">
+                                    <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Biển số xe</th>
+                                                <th>Trọng tải tối đa</th>
+                                                <th>Chủ xe</th>
+                                                <th>Giấy CN đăng ký</th>
+                                                <th>Ngày hết hạn</th>
+                                                <th>Giấy phép vận tải</th>
+                                                <th>Ngày hết hạn</th>
+                                                <th>Số khung</th>
+                                                <th>Ghi chú</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% Data.forEach(function(x){ %>
+                                                <tr>
+                                                    <td>
+                                                        <%= x.bienso %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.taitrong %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.chuxe %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.giaycn %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.ngayhetvn %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.giayphepvt %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.ngayhetvt %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.sokhung %>
+                                                    </td>
+                                                    <td>
+                                                        <%= x.note %>
+                                                    </td>
+                                                    <td>
+                                                        <% if (User.Position == "Quản Lý" || User.Position == "Kinh Doanh" ) { %>
+                                                            <a class="btn btn-success btn-grad" href="/XB/UPDATE?id=<%= x.id %>">Chỉnh sửa</a>
+                                                            <a class="btn btn-danger btn-grad" href="/XB/DELETE?id=<%= x.id %>">Xóa</a>
+                                                            <% }; %>
+                                                                <% if (User.Position == "Vận Hành" || User.Position == "Quản Lý") { %>
+                                                                    <a class="btn btn-metis-5 btn-grad" href="/XB/DETAIL?id=<%= x.id %>">Chi tiết</a>
+                                                                    <% } %>
+
+                                                    </td>
+                                                </tr>
+                                                <% }); %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <!--End Datatables-->
+
+                </div>
+                <!-- /.inner -->
+            </div>
+            <!-- /.outer -->
+        </div>
+        <!-- /#content -->
+    </div>
+    <footer class="Footer bg-dark dker">
+        <p>2021 &copy; NK Engineering Co.,Ltd</p>
+    </footer>
+    <!-- -->
+
+    <!--jQuery -->
+    <script src="assets/lib/jquery/jquery.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+    <!--Bootstrap -->
+    <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script src="assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script src="assets/lib/screenfull/screenfull.js"></script>
+
+    <!-- Metis core scripts -->
+    <script src="assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        $(function() {
+            Metis.MetisTable();
+            Metis.metisSortable();
+        });
+    </script>
+
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"61c0a02e79b2d1df","si":10,"version":"2021.1.2"}'></script>
+</body>

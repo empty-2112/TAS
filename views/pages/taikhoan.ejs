@@ -1,0 +1,425 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/main.min.css">
+
+    <!-- onoffcanvas stylesheet -->
+    <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+    <!-- animate.css stylesheet -->
+    <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+    <!-- metisMenu stylesheet -->
+    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
+
+
+    <!--[if lt IE 9]>
+      <script src="assets/lib/html5shiv/html5shiv.js"></script>
+      <script src="assets/lib/respond/respond.min.js"></script>
+      <![endif]-->
+
+    <script>
+        less = {
+            env: "development",
+            relativeUrls: false,
+            rootpath: "/assets/"
+        };
+    </script>
+    <link rel="stylesheet" href="assets/css/style-switcher.css">
+    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+</head>
+
+<body class="bg-dark dk">
+    <div class="bg-dark dk" id="wrap">
+        <div id="top">
+
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container-fluid">
+
+                    <header class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">
+                            <img src="assets/img/logohk.png" height="50px;">
+                        </a>
+                        <a href="/" class="navbar-brand">
+                            <img src="assets/img/logo.png" alt="">
+                        </a>
+                    </header>
+                    <div class="topnav">
+
+
+                        <div class="btn-group">
+                            <a href="/user/logout" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
+                                <i class="fa fa-power-off"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <img class="img-fluid" src="assets/img/logo_nk.jpg" width="60px;">
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    </div>
+                </div>
+            </nav>
+            <header class="head">
+                <div class="main-bar">
+                    <h3>
+                        <i class="fa fa-gears">
+                        </i>&nbsp; Quản Lý</h3>
+                </div>
+            </header>
+        </div>
+        <div id="left">
+            <div class="media user-media bg-dark dker">
+                <div class="user-media-toggleHover">
+                    <span class="fa fa-user"></span>
+                </div>
+                <div class="user-wrapper bg-dark">
+                    <a class="user-link">
+                        <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            <%= User.User%>
+                        </h5>
+                        <ul class="list-unstyled user-info">
+                            <li>
+                                <p href="">
+                                    <%=User.Position%>
+                                </p>
+                            </li>
+                            <li>
+                                <br>
+                                <br>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <ul id="menu" class="bg-drak dker">
+                <li class="nav-header">Menu</li>
+                <li class="nav-divider"></li>
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="link-title">&nbsp;Dashboard</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/DH">
+                        <i class="fa fa-table"></i>
+                        <span class="link-title">Quản lý đơn hàng</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="javascript:;">
+                        <i class="fa fa-building "></i>
+                        <span class="link-title">Xuất báo cáo</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="javascript:;">
+                        <i class="fa fa-gears"></i>
+                        <span class="link-title">Quản lý</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/TX">
+                                <i class="fa fa-angle-right"></i>&nbsp; Tài xế </a>
+                        </li>
+                        <li>
+                            <a href="/XB">
+                                <i class="fa fa-angle-right"></i>&nbsp; Xe bồn </a>
+                        </li>
+                        <li>
+                            <a href="/KH">
+                                <i class="fa fa-angle-right"></i>&nbsp; Khách hàng </a>
+                        </li>
+                        <% if(User.Position == "Quản Lý"){%>
+                            <li>
+                                <a href="/TK">
+                                    <i class="fa fa-angle-right"></i>&nbsp; Tài khoản </a>
+                            </li>
+                            <%}%>
+                    </ul>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="/user/logout">
+                        <i class="fa fa-sign-in"></i>
+                        <span class="link-title">
+                            Login Page
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#left -->
+        <div id="content">
+            <div class="outer">
+                <div class="inner bg-light lter">
+                    <!--Begin Datatables-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="box">
+                                <header>
+                                    <div class="icons"><i class="fa fa-table"></i></div>
+                                    <h5>Tài Khoản</h5>
+                                </header>
+                                <div id="collapse4" class="body">
+                                    <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Chủ tài khoản</th>
+                                                <th>Email</th>
+                                                <th>Vị trí</th>
+                                                <th>Ghi chú</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% if(User.Position == "Quản Lý"){%>
+                                                <% Data.forEach(function(x){ %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= x.tentk %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.emailtk %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.vitritk %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.note %>
+                                                        </td>
+                                                        <td>
+                                                            <% if(User.Position == "Quản Lý"){%>
+                                                                <a class="btn btn-success btn-grad" href="/TK/UPDATE?id=<%= x.id %>">Chỉnh sửa</a>
+                                                                <a class="btn btn-danger btn-grad" href="/TK/DELETE?id=<%= x.id %>">Xóa</a>
+                                                                <%}%>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                                        <%}%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <!-- Form create-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="box">
+                                <header class="dark">
+                                    <div class="icons"><i class="fa fa-check"></i></div>
+                                    <% if(message=="CREATE") {%>
+                                        <h5>Tạo Tài Khoản</h5>
+                                        <%}%>
+                                            <% if(message=="UPDATE") {%>
+                                                <h5>Thay đổi thông tin Tài Khoản</h5>
+                                                <%}%>
+                                                    <!-- .toolbar -->
+                                                    <div class="toolbar">
+                                                        <nav style="padding: 8px;">
+                                                            <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                                                <i class="fa fa-plus"></i>
+                                                            </a>
+                                                            <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                                                <i class="fa fa-expand"></i>
+                                                            </a>
+                                                            <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                                                <i class="fa fa-times"></i>
+                                                            </a>
+                                                        </nav>
+                                                    </div>
+                                                    <!-- /.toolbar -->
+
+                                </header>
+                                <div id="collapse2" class="body">
+                                    <% if(message=="CREATE") {%>
+                                        <form class="form-horizontal" id="popup-validation" method="POST" action="/TK/CREATE">
+                                            <%}%>
+                                                <% if(message=="UPDATE") {%>
+                                                    <form class="form-horizontal" id="popup-validation" method="POST" action="/TK/UPDATE">
+                                                        <%}%>
+                                                            <div class="form-group" style="display: none;">
+                                                                <label class="control-label col-lg-12">ID</label>
+                                                                <div class="col-lg-12">
+                                                                    <% if(Data1[0].id){%>
+                                                                        <input value="<%=Data1[0].id%>" type="text" class="validate[] form-control" name="para0" id="para0">
+                                                                        <%}else{%>
+                                                                            <input type="text" class="validate[] form-control" name="para0" id="para0">
+                                                                            <%}%>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-lg-12">
+                                                                <label class="control-label col-lg-3">Tên đăng nhập</label>
+
+                                                                <div class=" col-lg-3">
+                                                                    <% if(Data1[0].tentk){%>
+                                                                        <input value="<%=Data1[0].tentk%>" class="validate[required] form-control" type="text" name="para1" id="para1" />
+                                                                        <%}else{%>
+                                                                            <input class="validate[required] form-control" type="text" name="para1" id="para1" />
+                                                                            <%}%>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-lg-12">
+                                                                <label class="control-label col-lg-3">Email</label>
+
+                                                                <div class=" col-lg-3">
+                                                                    <% if(Data1[0].emailtk){%>
+                                                                        <input value="<%=Data1[0].emailtk %>" class="validate[required] form-control" type="email" name="para2" id="para2" />
+                                                                        <%}else{%>
+                                                                            <input class="validate[required] form-control" type="email" name="para2" id="para2" />
+                                                                            <%}%>
+                                                                </div>
+                                                            </div>
+
+                                                            <% if(message=="UPDATE") {%>
+                                                                <%}else{%>
+                                                                    <div class="form-group col-lg-12">
+                                                                        <label class="control-label col-lg-3">Password</label>
+
+                                                                        <div class=" col-lg-3">
+                                                                            <% if(Data1[0].matkhautk){%>
+                                                                                <input value="<%=Data1[0].matkhautk%>" class="validate[required] form-control" type="password" name="para3" id="para3" />
+                                                                                <%}else{%>
+                                                                                    <input class="validate[required] form-control" type="password" name="para3" id="para3" />
+                                                                                    <%}%>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <%}%>
+
+                                                                        <div class="form-group col-lg-12">
+                                                                            <label class="control-label col-lg-3">Vị trí</label>
+
+                                                                            <div class="col-lg-3">
+                                                                                <select name="para4" id="para4" class="validate[required] form-control">
+                                                                <% if(Data1[0].vitritk == "Vận Hành"){%>
+                                                                    <option value="Vận Hành" selected>Vận hành</option>
+                                                                    <%}else{%>
+                                                                        <option value="Vận Hành">Vận hành</option>
+                                                                        <%}%>
+                                                                        <% if(Data1[0].vitritk == "Kinh Doanh"){%>
+                                                                            <option value="Kinh Doanh" selected>Kinh doanh</option>
+                                                                            <%}else{%>
+                                                                                <option value="Kinh Doanh">Kinh doanh</option>
+                                                                                <%}%>
+                                                                                <% if(Data1[0].vitritk == "Quản lý"){%>
+                                                                                    <option value="Quản lý">Quản lý</option>
+                                                                                    <%}else{%>
+                                                                                        <option value="Quản lý">Quản lý</option>
+                                                                                        <%}%>
+                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-12">
+                                                                            <label class="control-label col-lg-3">Ghi chú</label>
+
+                                                                            <div class=" col-lg-3">
+                                                                                <% if(Data1[0].note){%>
+                                                                                    <textarea class="validate[] form-control" type="text" name="para5" id="para5"><%=Data1[0].note%></textarea>
+                                                                                    <%}else{%>
+                                                                                        <textarea class="validate[] form-control" type="text" name="para5" id="para5"></textarea>
+                                                                                        <%}%>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-actions no-margin-bottom">
+                                                                            <% if(message=="CREATE") {%>
+                                                                                <input type="submit" value="Khởi Tạo" class="btn btn-primary">
+                                                                                <%}%>
+                                                                                    <% if(message=="UPDATE") {%>
+                                                                                        <input type="submit" value="Cập Nhật" class="btn btn-primary">
+                                                                                        <%}%>
+                                                                        </div>
+                                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row-->
+                    <!--End Datatables-->
+
+                </div>
+                <!-- /.inner -->
+            </div>
+            <!-- /.outer -->
+        </div>
+        <!-- /#content -->
+    </div>
+    <footer class="Footer bg-dark dker">
+        <p>2021 &copy; NK Engineering Co.,Ltd</p>
+    </footer>
+    <!-- -->
+
+    <!--jQuery -->
+    <script src="assets/lib/jquery/jquery.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+    <!--Bootstrap -->
+    <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script src="assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script src="assets/lib/screenfull/screenfull.js"></script>
+
+    <!-- Metis core scripts -->
+    <script src="assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        $(function() {
+            Metis.MetisTable();
+            Metis.metisSortable();
+        });
+    </script>
+
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"61c0a02e79b2d1df","si":10,"version":"2021.1.2"}'></script>
+</body>
