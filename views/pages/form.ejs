@@ -248,9 +248,9 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Mã đơn hàng</label>
-                                                                            <div class="col-lg-4">
+                                                                            <div class="col-lg-8">
                                                                                 <% if (Data[0].maHD) { %>
                                                                                     <input type="text" class="validate[required] form-control" name="para1" id="para1" readonly value="<%= Data[0].maHD %>" />
                                                                                     <% }else { %>
@@ -259,10 +259,37 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 1</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp1" id="sp1" class="validate[] form-control">
+                                                                                    
+                                                                                    <% if (Data[0].ngan1) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 1</option>
+                                                                                        <% if (Data[0].ngan1 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan1 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="" >Chọn sản phẩm cho ngăn 1</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Thời gian</label>
 
-                                                                            <div class=" col-lg-4">
+                                                                            <div class=" col-lg-8">
                                                                                 <% if (Data[0].datecreate) { %>
                                                                                     <input class="validate[] form-control" type="datetime" name="para2" id="para2" readonly value="<%= Data[0].datecreate%>" />
                                                                                     <% }else { %>
@@ -271,10 +298,24 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 1</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong1) { %>
+                                                                                    <input value="<%= Data[0].khoiluong1%>" type="text" class="validate[] form-control" name="kl1" id="kl1">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl1" id="kl1">
+                                                                                        <% } %>
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Loại đơn hàng</label>
-                                                                            <div class="col-lg-4">
-                                                                                <select name="para3" id="sport" class="validate[required] form-control">
+                                                                            <div class="col-lg-8">
+                                                                                <select name="para3" id="sport" class="validate[] form-control">
                                                     <% if (Data[0].tyopHD) { %>
                                                         <% if (Data[0].tyopHD == "Dân dụng") { %>
                                                             <option value="Dân dụng" selected>Dân dụng</option>
@@ -295,10 +336,36 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 2</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp2" id="sp2" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan2) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 2</option>
+                                                                                        <% if (Data[0].ngan2 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan2 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="" >Chọn sản phẩm cho ngăn 2</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Khách hàng</label>
 
-                                                                            <div class="col-lg-4">
+                                                                            <div class="col-lg-8">
                                                                                 <select name="para4" id="sport2" class="validate[required] form-control">
                                                     <% KH.forEach(function(x){ %>
                                                         <% if (Data[0].kh == x.id) {%>
@@ -311,29 +378,21 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-lg-4">Trạm xuất</label>
-
-                                                                            <div class="col-lg-4">
-                                                                                <select name="para5" id="para5" class="validate[required] form-control">
-                                                    <% if (Data[0].tramxuat=="Trạm 1") {%>
-                                                    <option value="Trạm 1" selected>Trạm 1</option>
-                                                    <%}else{%>
-                                                        <option value="Trạm 1">Trạm 1</option>
-                                                        <%}%>
-                                                    <% if (Data[0].tramxuat=="Trạm 2") {%>
-                                                            <option value="Trạm 2" selected>Trạm 2</option>
-                                                            <%}else{%>
-                                                                <option value="Trạm 2">Trạm 2</option>
-                                                                <%}%>
-                                                </select>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 2</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong2) { %>
+                                                                                    <input value="<%= Data[0].khoiluong2%>" type="text" class="validate[] form-control" name="kl2" id="kl2">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl2" id="kl2">
+                                                                                        <% } %>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Công ty vận tải</label>
 
-                                                                            <div class="col-lg-4">
+                                                                            <div class="col-lg-8">
                                                                                 <% if (Data[0].ctyvantaiHD){%>
                                                                                     <input class="validate[required] form-control" type="text" id="para6" name="para6" value="<%= Data[0].ctyvantaiHD%>" />
                                                                                     <%}else{%>
@@ -342,10 +401,36 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 3</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp3" id="sp3" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan3) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 3</option>
+                                                                                        <% if (Data[0].ngan3 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan3 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="">Chọn sản phẩm cho ngăn 3</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Tài xế</label>
 
-                                                                            <div class="col-lg-4">
+                                                                            <div class="col-lg-8">
                                                                                 <select name="para7" id="sport5" class="validate[required] form-control">
                                                     <% TX.forEach(function(x){ %>
                                                         <% if(Data[0].taixe == x.id) {%>
@@ -358,10 +443,21 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 3</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong3) { %>
+                                                                                    <input value="<%= Data[0].khoiluong3%>" type="text" class="validate[] form-control" name="kl3" id="kl3">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl3" id="kl3">
+                                                                                        <% } %>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Biển số xe</label>
 
-                                                                            <div class=" col-lg-4">
+                                                                            <div class=" col-lg-8">
                                                                                 <select name="para8" id="para8" class="validate[required] form-control">
                                                     <% XE.forEach(function(x){ %>
                                                         <% if(Data[0].xe == x.id) {%>
@@ -374,31 +470,35 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-lg-4">Khối lượng</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 4</label>
 
-                                                                            <div class=" col-lg-4">
-                                                                                <% if (Data[0].khoiluong) {%>
-                                                                                    <input class="validate[required] form-control" type="text" name="para9" id="para9" value="<%= Data[0].khoiluong %>" />
-                                                                                    <%}else{%>
-                                                                                        <input class="validate[required] form-control" type="text" name="para9" id="para9" />
-                                                                                        <%}%>
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp4" id="sp4" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan4) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 4</option>
+                                                                                        <% if (Data[0].ngan4 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan4 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="">Chọn sản phẩm cho ngăn 4</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-lg-4">Đơn vị</label>
-
-                                                                            <div class=" col-lg-4">
-                                                                                <select name="para10" id="unit" class="validate[required] form-control">
-                                                    <option value="Kg" selected>Kg</option>
-                                                </select>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Thanh toán</label>
-                                                                            <div class=" col-lg-4">
+                                                                            <div class=" col-lg-8">
                                                                                 <select name="para11" id="sport8" class="validate[required] form-control">
                                                     <% if(Data[0].thanhtoan == "Thanh toán sau"){%>
                                                         <option value="Thanh toán sau" selected>Thanh toán sau</option>
@@ -414,29 +514,254 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 4</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong4) { %>
+                                                                                    <input value="<%= Data[0].khoiluong4%>" type="text" class="validate[] form-control" name="kl4" id="kl4">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl4" id="kl4">
+                                                                                        <% } %>
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Trạng thái</label>
-                                                                            <div class=" col-lg-4">
+                                                                            <div class=" col-lg-8">
                                                                                 <input class="validate[] form-control" type="text" name="para13" value="<%= Data[0].trangthai %>" readonly/>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-lg-4">Người Tạo</label>
-                                                                            <div class=" col-lg-4">
-                                                                                <input class="validate[] form-control" type="text" name="para14" value="<%= Data[0].nguoitao %>" readonly/>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 5</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp5" id="sp5" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan5) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 5</option>
+                                                                                        <% if (Data[0].ngan5 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan5 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="">Chọn sản phẩm cho ngăn 5</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="form-group">
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Người Tạo</label>
+                                                                            <div class=" col-lg-8">
+                                                                                <input class="validate[] form-control" type="text" name="para14" value="<%= Data[0].nguoitao %>" readonly/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 5</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong5) { %>
+                                                                                    <input value="<%= Data[0].khoiluong5%>" type="text" class="validate[] form-control" name="kl5" id="kl5">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl5" id="kl5">
+                                                                                        <% } %>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
                                                                             <label class="control-label col-lg-4">Ghi chú</label>
 
-                                                                            <div class=" col-lg-4">
+                                                                            <div class=" col-lg-8">
                                                                                 <% if(Data[0].ghichu) {%>
-                                                                                    <textarea class="validate[] form-control" type="text" name="para12" id="sport9"><%=Data[0].ghichu%></textarea>
+                                                                                    <textarea class="validate[] form-control" style="margin: 0px 1px 0px 0px; height: 34px; width: 477px;" type="text" name="para12" id="sport9"><%=Data[0].ghichu%></textarea>
                                                                                     <%}else{%>
-                                                                                        <textarea class="validate[] form-control" type="text" name="para12" id="sport9"></textarea>
+                                                                                        <textarea class="validate[] form-control" style="margin: 0px 1px 0px 0px; height: 34px; width: 477px;" type="text" name="para12" id="sport9"></textarea>
                                                                                         <%}%>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 6</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp6" id="sp6" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan6) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 6</option>
+                                                                                        <% if (Data[0].ngan6 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan6 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="">Chọn sản phẩm cho ngăn 6</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 6</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong6) { %>
+                                                                                    <input value="<%= Data[0].khoiluong6%>" type="text" class="validate[] form-control" name="kl6" id="kl6">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl6" id="kl6">
+                                                                                        <% } %>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 7</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp7" id="sp7" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan7) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 7</option>
+                                                                                        <% if (Data[0].ngan7 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan7 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="">Chọn sản phẩm cho ngăn 7</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 7</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong7) { %>
+                                                                                    <input value="<%= Data[0].khoiluong7%>" type="text" class="validate[] form-control" name="kl7" id="kl7">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl7" id="kl7">
+                                                                                        <% } %>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 8</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp8" id="sp8" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan8) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 8</option>
+                                                                                        <% if (Data[0].ngan8 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan8 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="">Chọn sản phẩm cho ngăn 8</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 8</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong8) { %>
+                                                                                    <input value="<%= Data[0].khoiluong8%>" type="text" class="validate[] form-control" name="kl8" id="kl8">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl8" id="kl8">
+                                                                                        <% } %>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Ngăn 9</label>
+
+                                                                            <div class="col-lg-8">
+                                                                                <select name="sp9" id="sp9" class="validate[] form-control">
+                                                                                    <% if (Data[0].ngan9) { %>
+                                                                                        <option value="" >Chọn sản phẩm cho ngăn 9</option>
+                                                                                        <% if (Data[0].ngan9 == "DO 0.05%") { %>
+                                                                                            <option value="DO 0.05%" selected>DO 0.05%</option>
+                                                                                            <% }else { %>
+                                                                                                <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                                <% } %>
+                                                                                                <% if (Data[0].ngan9 == "DO 0.001%") { %>
+                                                                                                    <option value="DO 0.001%" selected>DO 0.001%</option>
+                                                                                                    <% }else { %>
+                                                                                                        <option value="DO 0.001%" >DO 0.001%</option>
+                                                                                                        <% } %>
+                                                                                        <% }else { %>
+                                                                                            <option value="">Chọn sản phẩm cho ngăn 9</option>
+                                                                                            <option value="DO 0.05%" >DO 0.05%</option>
+                                                                                            <option value="DO 0.001%">DO 0.001%</option>
+                                                                                            <% } %>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+
+                                                                        </div>
+
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-4">Khối Lượng Ngăn 9</label>
+                                                                            <div class="col-lg-8">
+                                                                                <% if (Data[0].khoiluong9) { %>
+                                                                                    <input value="<%= Data[0].khoiluong9%>" type="text" class="validate[] form-control" name="kl9" id="kl9">
+                                                                                    <% }else { %>
+                                                                                        <input value="0" type="text" class="validate[] form-control" name="kl9" id="kl9">
+                                                                                        <% } %>
                                                                             </div>
                                                                         </div>
 

@@ -45,14 +45,29 @@ router.get("/CREATE", (req, res) => {
                                         id: null,
                                         maHD: null,
                                         datecreate: time,
-                                        tyopHD: null,
-                                        kh: null,
+                                        typeHD: null,
                                         ctyvantaiHD: null,
+                                        kh: null,
                                         taixe: null,
                                         xe: null,
-                                        tramxuat: null,
-                                        khoiluong: null,
-                                        donvi: null,
+                                        ngan1: null,
+                                        khoiluong1: null,
+                                        ngan2: null,
+                                        khoiluong2: null,
+                                        ngan3: null,
+                                        khoiluong3: null,
+                                        ngan4: null,
+                                        khoiluong4: null,
+                                        ngan5: null,
+                                        khoiluong5: null,
+                                        ngan6: null,
+                                        khoiluong6: null,
+                                        ngan7: null,
+                                        khoiluong7: null,
+                                        ngan8: null,
+                                        khoiluong8: null,
+                                        ngan9: null,
+                                        khoiluong9: null,
                                         thanhtoan: null,
                                         trangthai: null,
                                         nguoitao: null,
@@ -82,28 +97,58 @@ router.post("/CREATE", (req, res) => {
             var datecreate = new Date();
         }
         var typeHD = req.body.para3;
-        var kh = req.body.para4;
-        var tramxuat = req.body.para5;
         var ctyvantaiHD = req.body.para6;
+        var kh = req.body.para4;
         var taixe = req.body.para7;
         var xe = req.body.para8;
-        var khoiluong = req.body.para9;
-        var donvi = req.body.para10;
+        var ngan1 = req.body.sp1;
+        var ngan2 = req.body.sp2;
+        var ngan3 = req.body.sp3;
+        var ngan4 = req.body.sp4;
+        var ngan5 = req.body.sp5;
+        var ngan6 = req.body.sp6;
+        var ngan7 = req.body.sp7;
+        var ngan8 = req.body.sp8;
+        var ngan9 = req.body.sp9;
+        var khoiluong1 = req.body.kl1;
+        var khoiluong2 = req.body.kl2;
+        var khoiluong3 = req.body.kl3;
+        var khoiluong4 = req.body.kl4;
+        var khoiluong5 = req.body.kl5;
+        var khoiluong6 = req.body.kl6;
+        var khoiluong7 = req.body.kl7;
+        var khoiluong8 = req.body.kl8;
+        var khoiluong9 = req.body.kl9;
         var thanhtoan = req.body.para11;
         var ghichu = req.body.para12;
-        var trangthai = "Đã duyệt";
+        var trangthai = "Đang chờ duyệt";
         var nguoitao = req.session.User.User;
         var dh = {
             maHD: maHD,
             datecreate: datecreate,
-            tyopHD: typeHD,
-            kh: kh,
+            typeHD: typeHD,
             ctyvantaiHD: ctyvantaiHD,
+            kh: kh,
             taixe: taixe,
             xe: xe,
-            tramxuat: tramxuat,
-            khoiluong: khoiluong,
-            donvi: donvi,
+            ngan1: ngan1,
+            khoiluong1: khoiluong1,
+            ngan2: ngan2,
+            khoiluong2: khoiluong2,
+            ngan3: ngan3,
+            khoiluong3: khoiluong3,
+            ngan4: ngan4,
+            khoiluong4: khoiluong4,
+            ngan5: ngan5,
+            khoiluong5: khoiluong5,
+            ngan6: ngan6,
+            khoiluong6: khoiluong6,
+            ngan7: ngan7,
+            khoiluong7: khoiluong7,
+            ngan8: ngan8,
+            khoiluong8: khoiluong8,
+            ngan9: ngan9,
+            khoiluong9: khoiluong9,
             thanhtoan: thanhtoan,
             trangthai: trangthai,
             nguoitao: nguoitao,
@@ -154,16 +199,31 @@ router.get('/UPDATE', (req, res) => {
 router.post('/UPDATE', (req, res) => {
     var id = req.body.para0;
     var typeHD = req.body.para3;
-    var kh = req.body.para4;
     var ctyvantaiHD = req.body.para6;
+    var kh = req.body.para4;
     var taixe = req.body.para7;
     var xe = req.body.para8;
-    var tramxuat = req.body.para5;
-    var khoiluong = req.body.para9;
-    var donvi = req.body.para10;
+    var ngan1 = req.body.sp1;
+    var ngan2 = req.body.sp2;
+    var ngan3 = req.body.sp3;
+    var ngan4 = req.body.sp4;
+    var ngan5 = req.body.sp5;
+    var ngan6 = req.body.sp6;
+    var ngan7 = req.body.sp7;
+    var ngan8 = req.body.sp8;
+    var ngan9 = req.body.sp9;
+    var khoiluong1 = req.body.kl1;
+    var khoiluong2 = req.body.kl2;
+    var khoiluong3 = req.body.kl3;
+    var khoiluong4 = req.body.kl4;
+    var khoiluong5 = req.body.kl5;
+    var khoiluong6 = req.body.kl6;
+    var khoiluong7 = req.body.kl7;
+    var khoiluong8 = req.body.kl8;
+    var khoiluong9 = req.body.kl9;
     var thanhtoan = req.body.para11;
     var ghichu = req.body.para12;
-    UpdateDH([typeHD, kh, ctyvantaiHD, taixe, xe, tramxuat, khoiluong, donvi, thanhtoan, ghichu, id]).then((result) => {
+    UpdateDH([typeHD, ctyvantaiHD, kh, taixe, xe, ngan1, khoiluong1, ngan2, khoiluong2, ngan3, khoiluong3, ngan4, khoiluong4, ngan5, khoiluong5, ngan6, khoiluong6, ngan7, khoiluong7, ngan8, khoiluong8, ngan9, khoiluong9, thanhtoan, ghichu, id]).then((result) => {
         res.redirect("/DH")
     })
 });
@@ -230,7 +290,7 @@ router.post('/DETAIL', async(req, res) => {
                 };
                 var status = TramXuat2(node);
                 if (status) {
-                    UpdateStatusDH([req.body.para5, "Đang Xuất", req.body.para1]).then((result) => {
+                    UpdateStatusDH(["Đang Xuất", req.body.para1]).then((result) => {
                         res.redirect("/DH")
                     })
                 } else {

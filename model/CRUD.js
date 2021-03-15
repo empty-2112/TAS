@@ -385,7 +385,7 @@ var SelectByIDFromDH = function(para) {
 };
 var SelectALLDH = function() {
     return new Promise((resolve, reject) => {
-        var query = `select donhang.id,donhang.maHD,donhang.datecreate,khachhang.tenKH,taixe.cmnd,xebon.bienso,donhang.khoiluong,donhang.trangthai,donhang.nguoitao,donhang.ghichu,donhang.tramxuat,taixe.tenTX
+        var query = `select donhang.id,donhang.maHD,donhang.datecreate,khachhang.tenKH,taixe.cmnd,xebon.bienso,donhang.ngan1,donhang.khoiluong1,donhang.ngan2,donhang.khoiluong2,donhang.ngan3,donhang.khoiluong3,donhang.ngan4,donhang.khoiluong4,donhang.ngan5,donhang.khoiluong5,donhang.ngan6,donhang.khoiluong6,donhang.ngan7,donhang.khoiluong7,donhang.ngan8,donhang.khoiluong8,donhang.ngan9,donhang.khoiluong9,donhang.trangthai,donhang.nguoitao,donhang.ghichu,taixe.tenTX
         FROM hoakhanh.donhang
         join hoakhanh.khachhang on khachhang.id = donhang.kh
         join hoakhanh.taixe on taixe.id = donhang.taixe
@@ -420,7 +420,7 @@ var InsertDH = function(para) {
 };
 var UpdateDH = function(para) {
     return new Promise((resolve, reject) => {
-        var query = 'Update DONHANG SET tyopHD=?,kh=?,ctyvantaiHD=?,taixe=?,xe=?,tramxuat=?,khoiluong=?,donvi=?,thanhtoan=?,ghichu=? where id=?;';
+        var query = 'Update DONHANG SET typeHD=?,ctyvantaiHD=?,kh=?,taixe=?,xe=?,ngan1=?,khoiluong1=?,ngan2=?,khoiluong2=?,ngan3=?,khoiluong3=?,ngan4=?,khoiluong4=?,ngan5=?,khoiluong5=?,ngan6=?,khoiluong6=?,ngan7=?,khoiluong7=?,ngan8=?,khoiluong8=?,ngan9=?,khoiluong9=?,thanhtoan=?,ghichu=? where id=?;';
         connection.query(query, para, (err, data, fields) => {
             if (err) {
                 reject(err.stack);
@@ -438,7 +438,7 @@ var UpdateDH = function(para) {
 };
 var UpdateStatusDH = function(para) {
     return new Promise((resolve, reject) => {
-        var query = 'Update DONHANG SET tramxuat=?,trangthai=? where maHD=?;';
+        var query = 'Update DONHANG SET trangthai=? where maHD=?;';
         connection.query(query, para, (err, data, fields) => {
             if (err) {
                 reject(err.stack);
