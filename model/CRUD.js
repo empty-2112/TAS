@@ -480,37 +480,305 @@ var CreateMaHD = function() {
             if (err) {
                 reject(err.stack);
             } else {
-                var time = new Date(Date.now());
-                var year = time.getFullYear();
-                var month = time.getMonth();
-                var date = time.getDate();
-                if ((time.getMonth() + 1) < 10) {
-                    month = "0" + (month + 1);
-                } else {
-                    month = (month + 1);
-                }
-                if (date < 10) {
-                    date = "0" + date;
-                } else {
-                    date = date;
-                }
-                var code = "DO" + year + month + date;
-                var codenow = (data[0].maHD).toString();
-                var code3 = codenow.substring(0, 10);
-                var stt = codenow.substring(10, 12);
-                if (code3.toString() == code.toString()) {
-                    if ((Number(stt) + 1) < 10) {
-                        code = code + "0" + (Number(stt) + 1);
+                if (data.length < 1) {
+                    var time = new Date(Date.now());
+                    var year = time.getFullYear();
+                    var month = time.getMonth();
+                    var date = time.getDate();
+                    if ((time.getMonth() + 1) < 10) {
+                        month = "0" + (month + 1);
                     } else {
-                        code = code + (Number(stt) + 1);
+                        month = (month + 1);
                     }
+                    if (date < 10) {
+                        date = "0" + date;
+                    } else {
+                        date = date;
+                    }
+                    var code = "DO" + year + month + date + "01";
+                    resolve(code);
                 } else {
-                    code = code + "01";
+                    var time = new Date(Date.now());
+                    var year = time.getFullYear();
+                    var month = time.getMonth();
+                    var date = time.getDate();
+                    if ((time.getMonth() + 1) < 10) {
+                        month = "0" + (month + 1);
+                    } else {
+                        month = (month + 1);
+                    }
+                    if (date < 10) {
+                        date = "0" + date;
+                    } else {
+                        date = date;
+                    }
+                    var code = "DO" + year + month + date;
+                    var codenow = (data[0].maHD).toString();
+                    var code3 = codenow.substring(0, 10);
+                    var stt = codenow.substring(10, 12);
+                    if (code3.toString() == code.toString()) {
+                        if ((Number(stt) + 1) < 10) {
+                            code = code + "0" + (Number(stt) + 1);
+                        } else {
+                            code = code + (Number(stt) + 1);
+                        }
+                    } else {
+                        code = code + "01";
+                    }
+                    resolve(code);
                 }
-                resolve(code);
+
             }
         })
 
     })
 };
-module.exports = { SelectALL, SelectByUserNameFromTK, SelectByIDFromTK, UpdateTK, InsertTK, DeleteTK, SelectByIDFromKH, UpdateKH, InsertKH, DeleteKH, SelectByIDFromTX, UpdateTX, InsertTX, DeleteTX, SelectByIDFromXB, InsertXB, UpdateXB, DeleteXB, SelectByIDFromDH, SelectALLDH, CreateMaHD, InsertDH, UpdateDH, DeleteDH, UpdateStatusDH }
+
+var DOofMonth = function() {
+    return new Promise((resolve, reject) => {
+        var query = 'call DO005(?);';
+        let t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12;
+        connection.query(query, ["01"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t1 = null;
+                } else {
+                    t1 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["02"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t2 = null;
+                } else {
+                    t2 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["03"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t3 = null;
+                } else {
+                    t3 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["04"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t4 = null;
+                } else {
+                    t4 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["05"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t5 = null;
+                } else {
+                    t5 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["06"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t6 = null;
+                } else {
+                    t6 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["07"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t7 = null;
+                } else {
+                    t7 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["08"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t8 = null;
+                } else {
+                    t8 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["09"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t9 = null;
+                } else {
+                    t9 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["10"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t10 = null;
+                } else {
+                    t10 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["11"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t11 = null;
+                } else {
+                    t11 = data[0];
+                }
+            }
+        });
+        connection.query(query, ["12"], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length < 1) {
+                    t12 = null;
+                } else {
+                    t12 = data[0];
+                    resolve([t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12]);
+                }
+            }
+        });
+    })
+};
+var DHOfCustomer = function() {
+    return new Promise((resolve, reject) => {
+        let query = `call DHOfCustomer();`;
+        connection.query(query, (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var StatusWait = function() {
+    return new Promise((resolve, reject) => {
+        let query = `select count(*) as waitting from donhang where donhang.trangthai = "Đang chờ duyệt";`;
+        connection.query(query, (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var StatusCheck = function() {
+    return new Promise((resolve, reject) => {
+        let query = `select count(*) as checked from donhang where donhang.trangthai = "Đã duyệt";`;
+        connection.query(query, (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var StatusRunning = function() {
+    return new Promise((resolve, reject) => {
+        let query = `select count(*) as running from donhang where donhang.trangthai = "Đang xuất";`;
+        connection.query(query, (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var StatusSuccess = function() {
+    return new Promise((resolve, reject) => {
+        let query = `select count(*) as success from donhang where donhang.trangthai = "Hoàn thành";`;
+        connection.query(query, (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var CheckDH = function(para) {
+    return new Promise((resolve, reject) => {
+        let query = `Update DONHANG SET trangthai="Đã duyệt" where id=?;`;
+        connection.query(query, [para], (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var checkUser = function(para1, para2) {
+    return new Promise((resolve, reject) => {
+        let query = `Select * from TAIKHOAN where tentk=? and matkhautk=?;`;
+        connection.query(query, [para1, para2], (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var UpdatePassword = function(para1, para2) {
+    return new Promise((resolve, reject) => {
+        let query = `Update TAIKHOAN SET matkhautk=? where id=?;`;
+        connection.query(query, [para1, para2], (err, data, fields) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+var findOne = function(para) {
+    return new Promise((resolve, reject) => {
+        let query = 'SELECT * from TAIKHOAN Where tentk=?;';
+        connection.query(query, [para], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+};
+module.exports = { SelectALL, SelectByUserNameFromTK, SelectByIDFromTK, UpdateTK, InsertTK, DeleteTK, SelectByIDFromKH, UpdateKH, InsertKH, DeleteKH, SelectByIDFromTX, UpdateTX, InsertTX, DeleteTX, SelectByIDFromXB, InsertXB, UpdateXB, DeleteXB, SelectByIDFromDH, SelectALLDH, CreateMaHD, InsertDH, UpdateDH, DeleteDH, UpdateStatusDH, DOofMonth, DHOfCustomer, StatusSuccess, StatusRunning, StatusCheck, StatusWait, CheckDH, UpdatePassword, findOne }

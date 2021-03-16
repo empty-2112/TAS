@@ -114,6 +114,7 @@
                                 </p>
                             </li>
                             <li>
+                                <a href="/TK/SETTING">Thay đổi mật khẩu</a>
                                 <br>
                                 <br>
                             </li>
@@ -289,10 +290,11 @@
 
                                                                 <div class=" col-lg-3">
                                                                     <% if(Data1[0].tentk){%>
-                                                                        <input value="<%=Data1[0].tentk%>" class="validate[required] form-control" type="text" name="para1" id="para1" />
-                                                                        <%}else{%>
-                                                                            <input class="validate[required] form-control" type="text" name="para1" id="para1" />
-                                                                            <%}%>
+                                                                        <input value="<%=Data1[0].tentk%>" class="validate[required] form-control" type="text" name="para1" id="para1" <% if(message=="UPDATE" ) {%> readonly
+                                                                        <%}%> />
+                                                                            <%}else{%>
+                                                                                <input class="validate[required] form-control" type="text" name="para1" id="para1" />
+                                                                                <%}%>
 
                                                                 </div>
                                                             </div>
@@ -345,6 +347,13 @@
                                                                                     <%}else{%>
                                                                                         <option value="Quản lý">Quản lý</option>
                                                                                         <%}%>
+                                                                                        <% if(Data1[0].vitritk == "Trưởng Phòng"){%>
+                                                                                            <option value="Trưởng Phòng">Trưởng Phòng</option>
+                                                                                            <%}else{%>
+                                                                                                <option value="Trưởng Phòng">Trưởng Phòng</option>
+                                                                                                <%}%>
+
+
                                                 </select>
                                                                             </div>
                                                                         </div>

@@ -126,6 +126,7 @@
                                 </p>
                             </li>
                             <li>
+                                <a href="/TK/SETTING">Thay đổi mật khẩu</a>
                                 <br>
                                 <br>
                             </li>
@@ -221,128 +222,127 @@
                                 </header>
                                 <div id="collapse2" class="body">
                                     <% if(message=="CREATE") {%>
-                                        <form class="form-horizontal" id="popup-validation" action="/TX/CREATE" method="POST">
+                                        <form class="form-horizontal" id="popup-validation" action="/TX/CREATE" method="POST" enctype="multipart/form-data">
                                             <%}%>
                                                 <% if(message=="UPDATE") {%>
-                                                    <form class="form-horizontal" id="popup-validation" action="/TX/UPDATE" method="POST">
+                                                    <form class="form-horizontal" id="popup-validation" action="/TX/UPDATE" method="POST" enctype="multipart/form-data">
                                                         <%}%>
                                                             <% if(message=="DETAIL") {%>
-                                                                <form class="form-horizontal" id="popup-validation" action="/TX/DETAIL" method="POST"></form>
-                                                                <%}%>
-                                                                    <div class="form-group" style="display: none;">
-                                                                        <label class="control-label col-lg-4">ID</label>
-                                                                        <div class="col-lg-4">
-                                                                            <% if(Data[0].id){%>
-                                                                                <input value="<%= Data[0].id%>" type="text" class="validate[] form-control" name="para0" id="para0">
-                                                                                <%}else{%>
-                                                                                    <input type="text" class="validate[] form-control" name="para0" id="para0">
-                                                                                    <%}%>
+                                                                <form class="form-horizontal" id="popup-validation" action="/TX/DETAIL" method="POST" enctype="multipart/form-data">
+                                                                    <%}%>
+                                                                        <div class="form-group" style="display: none;">
+                                                                            <label class="control-label col-lg-4">ID</label>
+                                                                            <div class="col-lg-4">
+                                                                                <% if(Data[0].id){%>
+                                                                                    <input value="<%= Data[0].id%>" type="text" class="validate[] form-control" name="para0" id="para0">
+                                                                                    <%}else{%>
+                                                                                        <input type="text" class="validate[] form-control" name="para0" id="para0">
+                                                                                        <%}%>
 
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">Họ và tên</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">Họ và tên</label>
 
-                                                                        <div class=" col-lg-6">
-                                                                            <% if(Data[0].tenTX){%>
-                                                                                <input value="<%=Data[0].tenTX %>" class="validate[required] form-control" type="text" name="para1" id="para1" />
-                                                                                <%}else{%>
-                                                                                    <input class="validate[required] form-control" type="text" name="para1" id="para1" />
-                                                                                    <%}%>
+                                                                            <div class=" col-lg-6">
+                                                                                <% if(Data[0].tenTX){%>
+                                                                                    <input value="<%=Data[0].tenTX %>" class="validate[required] form-control" type="text" name="para1" id="para1" />
+                                                                                    <%}else{%>
+                                                                                        <input class="validate[required] form-control" type="text" name="para1" id="para1" />
+                                                                                        <%}%>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">Ngày sinh</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">Ngày sinh</label>
 
-                                                                        <div class=" col-lg-6">
-                                                                            <% if(Data[0].ngaysinh){%>
-                                                                                <input value="<%=Data[0].ngaysinh%>" class="validate[custom[date]] form-control" type="date" name="para2" id="para2" />
-                                                                                <%}else{%>
-                                                                                    <input class="validate[custom[date]] form-control" type="date" name="para2" id="para2" />
-                                                                                    <%}%>
-
+                                                                            <div class=" col-lg-6">
+                                                                                <% if(Data[0].ngaysinh){%>
+                                                                                    <input value="<%=Data[0].ngaysinh%>" class="validate[custom[date]] form-control" type="date" name="para2" id="para2" />
+                                                                                    <%}else{%>
+                                                                                        <input value="" class="validate[custom[]] form-control" type="date" name="para2" id="para2" />
+                                                                                        <%}%>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">CMND</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">CMND</label>
 
-                                                                        <div class=" col-lg-6">
-                                                                            <% if(Data[0].cmnd){%>
-                                                                                <input value="<%= Data[0].cmnd %>" class="validate[] form-control" type="text" name="para3" id="para3" />
-                                                                                <%}else{%>
-                                                                                    <input class="validate[] form-control" type="text" name="para3" id="para3" />
-                                                                                    <%}%>
+                                                                            <div class=" col-lg-6">
+                                                                                <% if(Data[0].cmnd){%>
+                                                                                    <input value="<%= Data[0].cmnd %>" class="validate[] form-control" type="text" name="para3" id="para3" />
+                                                                                    <%}else{%>
+                                                                                        <input class="validate[] form-control" type="text" name="para3" id="para3" />
+                                                                                        <%}%>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">Ngày cấp</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">Ngày cấp</label>
 
-                                                                        <div class=" col-lg-6">
-                                                                            <% if(Data[0].ngaycap){%>
-                                                                                <input value="<%= Data[0].ngaycap %>" class="validate[custom[date]] form-control" type="date" name="para4" id="para4" />
-                                                                                <%}else{%>
-                                                                                    <input class="validate[custom[date]] form-control" type="date" name="para4" id="para4" />
-                                                                                    <%}%>
+                                                                            <div class=" col-lg-6">
+                                                                                <% if(Data[0].ngaycap){%>
+                                                                                    <input value="<%= Data[0].ngaycap %>" class="validate[custom[date]] form-control" type="date" name="para4" id="para4" />
+                                                                                    <%}else{%>
+                                                                                        <input value="null" class="validate[custom[]] form-control" type="date" name="para4" id="para4" />
+                                                                                        <%}%>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">Bằng lái xe</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">Bằng lái xe</label>
 
-                                                                        <div class=" col-lg-6">
-                                                                            <% if(Data[0].banglai){%>
-                                                                                <input value="<%= Data[0].banglai %>" class="validate[] form-control" type="text" name="para5" id="para5" />
-                                                                                <%}else{%>
-                                                                                    <input class="validate[] form-control" type="text" name="para5" id="para5" />
-                                                                                    <%}%>
+                                                                            <div class=" col-lg-6">
+                                                                                <% if(Data[0].banglai){%>
+                                                                                    <input value="<%= Data[0].banglai %>" class="validate[] form-control" type="text" name="para5" id="para5" />
+                                                                                    <%}else{%>
+                                                                                        <input class="validate[] form-control" type="text" name="para5" id="para5" />
+                                                                                        <%}%>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">Ngày hết hạng</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">Ngày hết hạng</label>
 
-                                                                        <div class=" col-lg-6">
-                                                                            <% if(Data[0].ngayhet){%>
-                                                                                <input value="<%= Data[0].ngayhet%>" class="validate[custom[date]] form-control" type="date" name="para6" id="para6" />
-                                                                                <%}else{%>
-                                                                                    <input class="validate[custom[date]] form-control" type="date" name="para6" id="para6" />
-                                                                                    <%}%>
+                                                                            <div class=" col-lg-6">
+                                                                                <% if(Data[0].ngayhet){%>
+                                                                                    <input value="<%= Data[0].ngayhet%>" class="validate[custom[date]] form-control" type="date" name="para6" id="para6" />
+                                                                                    <%}else{%>
+                                                                                        <input value="null" class="validate[custom[]] form-control" type="date" name="para6" id="para6" />
+                                                                                        <%}%>
 
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">Đính kèm</label>
-                                                                        <div class="col-lg-6">
-                                                                            <input class="validate[] form-control" type="file" id="para7" name="para7" multiple>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">Đính kèm</label>
+                                                                            <div class="col-lg-6">
+                                                                                <input class="validate[] form-control" type="file" id="Storage" name="Storage" multiple>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-group col-lg-6">
-                                                                        <label class="control-label col-lg-6">Ghi chú</label>
+                                                                        <div class="form-group col-lg-6">
+                                                                            <label class="control-label col-lg-6">Ghi chú</label>
 
-                                                                        <div class=" col-lg-6">
-                                                                            <% if(Data[0].note){%>
-                                                                                <textarea value="" class="validate[] form-control" type="text" name="para8" id="para8"><%= Data[0].note%></textarea>
-                                                                                <%}else{%>
-                                                                                    <textarea value="" class="validate[] form-control" type="text" name="para8" id="para8"></textarea>
-                                                                                    <%}%>
+                                                                            <div class=" col-lg-6">
+                                                                                <% if(Data[0].note){%>
+                                                                                    <textarea value="" class="validate[] form-control" type="text" name="para8" id="para8"><%= Data[0].note%></textarea>
+                                                                                    <%}else{%>
+                                                                                        <textarea value="" class="validate[] form-control" type="text" name="para8" id="para8"></textarea>
+                                                                                        <%}%>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="form-actions no-margin-bottom">
-                                                                        <% if(message=="CREATE") {%>
-                                                                            <input type="submit" value="Khởi Tạo" class="btn btn-primary">
-                                                                            <%}%>
-                                                                                <% if(message=="UPDATE") {%>
-                                                                                    <input type="submit" value="Cập Nhật" class="btn btn-primary">
-                                                                                    <%}%>
-                                                                    </div>
-                                                    </form>
+                                                                        <div class="form-actions no-margin-bottom">
+                                                                            <% if(message=="CREATE") {%>
+                                                                                <input type="submit" value="Khởi Tạo" class="btn btn-primary">
+                                                                                <%}%>
+                                                                                    <% if(message=="UPDATE") {%>
+                                                                                        <input type="submit" value="Cập Nhật" class="btn btn-primary">
+                                                                                        <%}%>
+                                                                        </div>
+                                                                </form>
                                 </div>
                             </div>
                         </div>

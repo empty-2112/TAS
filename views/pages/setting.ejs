@@ -15,6 +15,15 @@
 
     <link rel="stylesheet" href="assets/css/main.min.css">
 
+    <!-- onoffcanvas stylesheet -->
+    <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+    <!-- animate.css stylesheet -->
+    <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+    <!-- metisMenu stylesheet -->
+    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
 
@@ -28,16 +37,11 @@
         less = {
             env: "development",
             relativeUrls: false,
-            rootpath: "../assets/"
+            rootpath: "/assets/"
         };
     </script>
     <link rel="stylesheet" href="assets/css/style-switcher.css">
     <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 </head>
 
 <body class="bg-dark dk">
@@ -49,11 +53,11 @@
 
                     <header class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                         <a class="navbar-brand">
                             <img src="assets/img/logohk.png" height="50px;">
                         </a>
@@ -62,6 +66,8 @@
                         </a>
                     </header>
                     <div class="topnav">
+
+
                         <div class="btn-group">
                             <a href="/user/logout" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
                                 <i class="fa fa-power-off"></i>
@@ -83,8 +89,8 @@
             <header class="head">
                 <div class="main-bar">
                     <h3>
-                        <i class="fa fa-dashboard">
-                        </i>&nbsp; Dashboard</h3>
+                        <i class="fa fa-gears">
+                        </i>&nbsp; Quản Lý</h3>
                 </div>
             </header>
         </div>
@@ -99,12 +105,12 @@
                     </a>
                     <div class="media-body">
                         <h5 class="media-heading">
-                            <%= User.User %>
+                            <%= User.User%>
                         </h5>
                         <ul class="list-unstyled user-info">
                             <li>
                                 <p href="">
-                                    <%= User.Position %>
+                                    <%=User.Position%>
                                 </p>
                             </li>
                             <li>
@@ -120,8 +126,8 @@
             <ul id="menu" class="bg-drak dker">
                 <li class="nav-header">Menu</li>
                 <li class="nav-divider"></li>
-                <li class="active">
-                    <a href="/dashboard">
+                <li class="">
+                    <a href="/">
                         <i class="fa fa-dashboard"></i>
                         <span class="link-title">&nbsp;Dashboard</span>
                     </a>
@@ -176,95 +182,118 @@
                 </li>
             </ul>
         </div>
+        <!-- /#left -->
         <div id="content">
             <div class="outer">
                 <div class="inner bg-light lter">
-                    <div class="text-center">
-                        <a class="quick-btn" href="#">
-                            <i class="fa fa-pause fa-2x"></i>
-                            <span>Chờ duyệt</span>
-                            <span class="label label-danger" id="waitting"></span>
-                        </a>
-                        <a class="quick-btn" href="#">
-                            <i class="fa fa-check fa-2x"></i>
-                            <span>Đã duyệt</span>
-                            <span class="label label-default" id="checked"></span>
-                        </a>
-                        <a class="quick-btn" href="#">
-                            <i class="fa fa-external-link fa-2x"></i>
-                            <span>Đang xuất</span>
-                            <span class="label label-warning" id="running"></span>
-                        </a>
-                        <a class="quick-btn" href="#">
-                            <i class="fa fa-thumbs-up fa-2x"></i>
-                            <span>Hoàn thành</span>
-                            <span class="label label-success" id="success"></span>
-                        </a>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="box">
-                                <header>
-                                    <h5>Tổng lượng dầu đã xuất</h5>
-                                </header>
-                                <canvas id="myChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="box">
-                                <header>
-                                    <h5>Số lượng đơn hàng</h5>
-                                </header>
-                                <canvas id="myChart1"></canvas>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Form create-->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="box">
                                 <header>
-                                    <h5>Lịch xuất hàng</h5>
+                                    <div class="icons"><i class="fa fa-table"></i></div>
+                                    <h5>Thay đổi mật khẩu</h5>
                                 </header>
-                                <div id="calendar_content" class="body">
-                                    <div id='calendar'></div>
+                                <div id="collapse2" class="body">
+                                    <div class="col-lg-12">
+                                        <% if(Error != "null") {%>
+                                            <p>
+                                                <%= Error%>
+                                            </p>
+                                            <%}%>
+                                    </div>
+                                    <% if(message=="SETTING") {%>
+                                        <form class="form-horizontal" id="popup-validation" method="POST" action="/TK/SETTING">
+                                            <%}%>
+
+                                                <div class="form-group col-lg-12">
+                                                    <label class="control-label col-lg-3">Tên đăng nhập</label>
+
+                                                    <div class=" col-lg-3">
+                                                        <input value="<%= User.User%>" class="validate[required] form-control" type="text" name="para1" id="para1">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-12">
+                                                    <label class="control-label col-lg-3">Nhập mật khẩu cũ</label>
+
+                                                    <div class=" col-lg-3">
+                                                        <input class="validate[required] form-control" type="password" name="para2" id="para2" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-12">
+                                                    <label class="control-label col-lg-3">Nhập mật khẩu mới</label>
+
+                                                    <div class=" col-lg-3">
+                                                        <input class="validate[required] form-control" type="password" name="para3" id="para3" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-12">
+                                                    <label class="control-label col-lg-3">Nhập lại mật khẩu mới</label>
+
+                                                    <div class=" col-lg-3">
+                                                        <input class="validate[required] form-control" type="password" name="para4" id="para4" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-actions no-margin-bottom">
+                                                    <% if(message=="SETTING") {%>
+                                                        <input type="submit" value="Thay đổi" class="btn btn-primary">
+                                                        <%}%>
+                                                </div>
+                                        </form>
                                 </div>
                             </div>
                         </div>
+                        <!-- /.col-lg-12 -->
                     </div>
+                    <!-- /.row-->
+                    <!--End Datatables-->
+
                 </div>
+                <!-- /.inner -->
             </div>
+            <!-- /.outer -->
         </div>
+        <!-- /#content -->
     </div>
     <footer class="Footer bg-dark dker">
         <p>2021 &copy; NK Engineering Co.,Ltd</p>
     </footer>
+    <!-- -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js"></script>
+    <!--jQuery -->
+    <script src="assets/lib/jquery/jquery.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+    <!--Bootstrap -->
+    <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script src="assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script src="assets/lib/screenfull/screenfull.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
-
-    <script src="assets/js/core.min.js"></script>
-
+    <!-- Metis core scripts -->
+    <script src="assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
     <script src="assets/js/app.js"></script>
-
-
 
     <script>
         $(function() {
-            Metis.dashboard();
+            Metis.MetisTable();
+            Metis.metisSortable();
         });
     </script>
+
+
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"61c0a02e79b2d1df","si":10,"version":"2021.1.2"}'></script>
 </body>

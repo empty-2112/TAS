@@ -114,6 +114,7 @@
                                 </p>
                             </li>
                             <li>
+                                <a href="/TK/SETTING">Thay đổi mật khẩu</a>
                                 <br>
                                 <br>
                             </li>
@@ -217,47 +218,49 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% Data.forEach(function(x){ %>
-                                                <tr>
-                                                    <td>
-                                                        <%= x.bienso %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.taitrong %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.chuxe %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.giaycn %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngayhetvn %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.giayphepvt %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngayhetvt %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.sokhung %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.note %>
-                                                    </td>
-                                                    <td>
-                                                        <% if (User.Position == "Quản Lý" || User.Position == "Kinh Doanh" ) { %>
-                                                            <a class="btn btn-success btn-grad" href="/XB/UPDATE?id=<%= x.id %>">Chỉnh sửa</a>
-                                                            <a class="btn btn-danger btn-grad" href="/XB/DELETE?id=<%= x.id %>">Xóa</a>
-                                                            <% }; %>
-                                                                <% if (User.Position == "Vận Hành" || User.Position == "Quản Lý") { %>
-                                                                    <a class="btn btn-metis-5 btn-grad" href="/XB/DETAIL?id=<%= x.id %>">Chi tiết</a>
-                                                                    <% } %>
+                                            <% if(Data != null) {%>
+                                                <% Data.forEach(function(x){ %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= x.bienso %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.taitrong %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.chuxe %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.giaycn %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngayhetvn %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.giayphepvt %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngayhetvt %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.sokhung %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.note %>
+                                                        </td>
+                                                        <td>
+                                                            <% if (User.Position == "Quản Lý" || User.Position == "Kinh Doanh" ) { %>
+                                                                <a class="btn btn-success btn-grad" href="/XB/UPDATE?id=<%= x.id %>">Chỉnh sửa</a>
+                                                                <a class="btn btn-danger btn-grad" href="/XB/DELETE?id=<%= x.id %>">Xóa</a>
+                                                                <% }; %>
+                                                                    <% if (User.Position == "Vận Hành" || User.Position == "Quản Lý") { %>
+                                                                        <a class="btn btn-metis-5 btn-grad" href="/XB/DETAIL?id=<%= x.id %>">Chi tiết</a>
+                                                                        <% } %>
 
-                                                    </td>
-                                                </tr>
-                                                <% }); %>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                                        <%}%>
                                         </tbody>
                                     </table>
                                 </div>

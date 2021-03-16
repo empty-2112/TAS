@@ -129,6 +129,7 @@
                                 </p>
                             </li>
                             <li>
+                                <a href="/TK/SETTING">Thay đổi mật khẩu</a>
                                 <br>
                                 <br>
                             </li>
@@ -367,6 +368,7 @@
 
                                                                             <div class="col-lg-8">
                                                                                 <select name="para4" id="sport2" class="validate[required] form-control">
+                                                                                    <% if(KH != null) {%>
                                                     <% KH.forEach(function(x){ %>
                                                         <% if (Data[0].kh == x.id) {%>
                                                         <option value="<%= x.id%>" selected><%= x.tenKH%></option>
@@ -374,6 +376,9 @@
                                                                 <option value="<%= x.id%>"><%= x.tenKH%></option>
                                                                 <%}%>
                                                         <% }); %>
+                                                        <%} else {%>
+                                                            <option value="null">Không có danh sách Khách Hàng</option>
+                                                            <%}%>
                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -432,6 +437,7 @@
 
                                                                             <div class="col-lg-8">
                                                                                 <select name="para7" id="sport5" class="validate[required] form-control">
+                                                                                    <% if(TX != null) { %>
                                                     <% TX.forEach(function(x){ %>
                                                         <% if(Data[0].taixe == x.id) {%>
                                                             <option value="<%= x.id%>" selected><%= x.tenTX%></option>
@@ -439,6 +445,9 @@
                                                                 <option value="<%= x.id%>"><%= x.tenTX%></option>
                                                                 <%}%>
                                                     <% }); %>
+                                                    <% } else {%>
+                                                        <option value="null">Không có danh sách tài xế</option>
+                                                        <%}%>
                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -459,6 +468,7 @@
 
                                                                             <div class=" col-lg-8">
                                                                                 <select name="para8" id="para8" class="validate[required] form-control">
+                                                                                    <% if(XE != null) { %>
                                                     <% XE.forEach(function(x){ %>
                                                         <% if(Data[0].xe == x.id) {%>
                                                             <option value="<%= x.id%>" selected><%= x.bienso%></option>
@@ -466,6 +476,9 @@
                                                                 <option value="<%= x.id%>"><%= x.bienso%></option>
                                                                 <%}%>
                                                     <% }); %>
+                                                    <%} else { %>
+                                                        <option value="null">Không có danh sách xe</option>
+                                                        <%}%>
                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -780,10 +793,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.row -->
+                    <!-- /.col-lg-12 -->
                 </div>
+                <!-- /.row -->
             </div>
         </div>
     </div>

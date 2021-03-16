@@ -114,6 +114,7 @@
                                 </p>
                             </li>
                             <li>
+                                <a href="/TK/SETTING">Thay đổi mật khẩu</a>
                                 <br>
                                 <br>
                             </li>
@@ -222,62 +223,68 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <% Data.forEach(function(x){ %>
-                                                <tr>
-                                                    <td>
-                                                        <%= x.maHD %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.trangthai %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.bienso %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan1 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan2 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan3 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan4 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan5 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan6 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan7 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan8 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ngan9 %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.ghichu %>
-                                                    </td>
-                                                    <td>
-                                                        <%= x.nguoitao %>
-                                                    </td>
-                                                    <td>
-                                                        <% if (User.Position == "Quản Lý" || User.Position == "Kinh Doanh" ) { %>
-                                                            <a class="btn btn-success btn-grad" href="/DH/UPDATE?id=<%= x.id %>">Chỉnh sửa</a>
-                                                            <a class="btn btn-danger btn-grad" href="/DH/DELETE?id=<%= x.id %>">Xóa</a>
-                                                            <% }; %>
-                                                                <% if (User.Position == "Vận Hành" || User.Position == "Quản Lý") { %>
-                                                                    <a class="btn btn-metis-5 btn-grad" href="/DH/DETAIL?id=<%= x.id %>">Chi tiết</a>
-                                                                    <% } %>
-                                                    </td>
-                                                </tr>
-                                                <% }); %>
+                                            <% if(Data != null) {%>
+                                                <% Data.forEach(function(x){ %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= x.maHD %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.trangthai %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.bienso %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan1 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan2 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan3 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan4 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan5 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan6 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan7 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan8 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ngan9 %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.ghichu %>
+                                                        </td>
+                                                        <td>
+                                                            <%= x.nguoitao %>
+                                                        </td>
+                                                        <td>
+                                                            <% if (User.Position == "Quản Lý" || User.Position == "Kinh Doanh" || User.Position == "Trưởng Phòng" ) { %>
+                                                                <a class="btn btn-success btn-grad" href="/DH/UPDATE?id=<%= x.id %>">Chỉnh sửa</a>
+                                                                <a class="btn btn-danger btn-grad" href="/DH/DELETE?id=<%= x.id %>">Xóa</a>
+                                                                <% }; %>
+                                                                    <% if (User.Position == "Vận Hành" || User.Position == "Quản Lý") { %>
+                                                                        <a class="btn btn-metis-5 btn-grad" href="/DH/DETAIL?id=<%= x.id %>">Chi tiết</a>
+                                                                        <% } %>
+                                                                            <% if (User.Position == "Trưởng Phòng" || User.Position == "Quản Lý") { %>
+                                                                                <% if(x.trangthai != "Đã duyệt") {%>
+                                                                                    <a class="btn btn-warning btn-grad" href="/DH/CHECK?id=<%= x.id %>">Duyệt</a>
+                                                                                    <%}%>
+                                                                                        <% } %>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                                        <%}%>
                                         </tbody>
                                     </table>
                                 </div>

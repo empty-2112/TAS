@@ -1,15 +1,31 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const { SelectALL, InsertKH, SelectByIDFromKH, UpdateKH, DeleteKH } = require('../model/CRUD');
 
 express().set('view engine', 'ejs');
+
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/Storage')
+    },
+    filename: function(req, file, cb) {
+        cb(null, 'TX' + file.originalname.split('.')[0] + '-' + Date.now() + '.' + file.originalname.split('.')[1])
+    }
+})
+
+var upload = multer({ storage: storage });
+
 router.get('/', (req, res) => {
     if (req.session.User == undefined || req.session.isAuth == false) {
         res.redirect("/user/login");
     } else {
         SelectALL("KHACHHANG", (err, data) => {
             if (err) {
-
+                res.render('../views/pages/khachhang.ejs', {
+                    User: req.session.User,
+                    Data: null
+                });
             } else {
                 res.render('../views/pages/khachhang.ejs', {
                     User: req.session.User,
@@ -39,7 +55,7 @@ router.get('/CREATE', (req, res) => {
         })
     }
 });
-router.post('/CREATE', (req, res) => {
+router.post('/CREATE', upload.array('Storage', 10), (req, res, next) => {
     if (req.session.User == undefined || req.session.isAuth == false) {
         res.redirect("/user/login");
     } else {

@@ -1,15 +1,34 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const router = express.Router();
+const app = express();
+const publicDirectoryPath = path.join(__dirname);
 const { SelectALL, InsertTX, SelectByIDFromTX, DeleteTX, UpdateTX } = require('../model/CRUD');
 
 express().set('view engine', 'ejs');
+
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/Storage')
+    },
+    filename: function(req, file, cb) {
+        cb(null, 'TX' + file.originalname.split('.')[0] + '-' + Date.now() + '.' + file.originalname.split('.')[1])
+    }
+})
+
+var upload = multer({ storage: storage });
+
 router.get('/', (req, res) => {
     if (req.session.User == undefined || req.session.isAuth == false) {
         res.redirect("/user/login");
     } else {
         SelectALL("taixe", (err, data) => {
             if (err) {
-
+                res.render('../views/pages/taixe.ejs', {
+                    User: req.session.User,
+                    Data: null
+                });
             } else {
                 data.forEach(element => {
                     var time1 = new Date(element.ngaysinh);
@@ -50,18 +69,39 @@ router.get('/CREATE', (req, res) => {
         })
     }
 });
-router.post('/CREATE', (req, res) => {
+router.post('/CREATE', upload.array('Storage', 10), (req, res, next) => {
     if (req.session.User == undefined || req.session.isAuth == false) {
         res.redirect("/user/login");
     } else {
+        let ngaysinh, ngaycap, ngayhet;
+
+        if (req.body.para2 == '') {
+            ngaysinh = null;
+        } else {
+            ngaysinh = req.body.para2;
+        }
+        if (req.body.para4 == '') {
+            ngaycap = null;
+        } else {
+            ngaycap = req.body.para4;
+        }
+        if (req.body.para6 == '') {
+            ngayhet = null;
+        } else {
+            ngayhet = req.body.para6;
+        }
+        let tenTX = req.body.para1;
+        let cmnd = req.body.para3;
+        let banglai = req.body.para5;
+        let note = req.body.para8;
         InsertTX({
-            tenTX: req.body.para1,
-            ngaysinh: req.body.para2,
-            cmnd: req.body.para3,
-            ngaycap: req.body.para4,
-            banglai: req.body.para5,
-            ngayhet: req.body.para6,
-            note: req.body.para8
+            tenTX: tenTX,
+            ngaysinh: ngaysinh,
+            cmnd: cmnd,
+            ngaycap: ngaycap,
+            banglai: banglai,
+            ngayhet: ngayhet,
+            note: note
         }).then((result) => {
             res.redirect("/TX");
         });
@@ -121,7 +161,12 @@ router.get('/UPDATE', (req, res) => {
     }
 });
 router.post('/UPDATE', (req, res) => {
-    console.log(req.body);
+    upload(req, res, function(err) {
+        if (err) {
+            console.log("Error uploading file.");
+        }
+        console.log("File is uploaded successfully!");
+    });
     UpdateTX([req.body.para1, req.body.para2, req.body.para3, req.body.para4, req.body.para5, req.body.para6, req.body.para8, req.body.para0]).then((result) => {
         res.redirect("/TX");
     })

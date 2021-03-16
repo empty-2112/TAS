@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { SelectALLDH, SelectALL, CreateMaHD, InsertDH, SelectByIDFromDH, UpdateDH, UpdateStatusDH, DeleteDH, SelectByIDFromXB } = require('../model/CRUD');
+const { SelectALLDH, SelectALL, CreateMaHD, InsertDH, SelectByIDFromDH, UpdateDH, UpdateStatusDH, DeleteDH, SelectByIDFromXB, CheckDH } = require('../model/CRUD');
 const { TramXuat, TramXuat2 } = require('../model/utilis');
 
 express().set('view engine', 'ejs');
@@ -15,6 +15,11 @@ router.get('/', (req, res) => {
             res.render('../views/pages/table.ejs', {
                 User: req.session.User,
                 Data: result
+            });
+        }).catch(err => {
+            res.render('../views/pages/table.ejs', {
+                User: req.session.User,
+                Data: null
             });
         })
     }
@@ -39,6 +44,189 @@ router.get("/CREATE", (req, res) => {
                         SelectALL("xebon", (err, data) => {
                             if (!err) {
                                 XE = data;
+                                res.render('../views/pages/form.ejs', {
+                                    User: req.session.User,
+                                    Data: [{
+                                        id: null,
+                                        maHD: null,
+                                        datecreate: time,
+                                        typeHD: null,
+                                        ctyvantaiHD: null,
+                                        kh: null,
+                                        taixe: null,
+                                        xe: null,
+                                        ngan1: null,
+                                        khoiluong1: null,
+                                        ngan2: null,
+                                        khoiluong2: null,
+                                        ngan3: null,
+                                        khoiluong3: null,
+                                        ngan4: null,
+                                        khoiluong4: null,
+                                        ngan5: null,
+                                        khoiluong5: null,
+                                        ngan6: null,
+                                        khoiluong6: null,
+                                        ngan7: null,
+                                        khoiluong7: null,
+                                        ngan8: null,
+                                        khoiluong8: null,
+                                        ngan9: null,
+                                        khoiluong9: null,
+                                        thanhtoan: null,
+                                        trangthai: null,
+                                        nguoitao: null,
+                                        nguoiduyet: null,
+                                        ghichu: null
+                                    }],
+                                    KH: KH,
+                                    XE: XE,
+                                    TX: TX,
+                                    message: "CREATE"
+                                })
+                            }
+                        })
+                    }
+                })
+            } else {
+                KH = null;
+                SelectALL("taixe", (err, data) => {
+                    if (!err) {
+                        TX = data;
+                        SelectALL("xebon", (err, data) => {
+                            if (!err) {
+                                XE = data;
+                                res.render('../views/pages/form.ejs', {
+                                    User: req.session.User,
+                                    Data: [{
+                                        id: null,
+                                        maHD: null,
+                                        datecreate: time,
+                                        typeHD: null,
+                                        ctyvantaiHD: null,
+                                        kh: null,
+                                        taixe: null,
+                                        xe: null,
+                                        ngan1: null,
+                                        khoiluong1: null,
+                                        ngan2: null,
+                                        khoiluong2: null,
+                                        ngan3: null,
+                                        khoiluong3: null,
+                                        ngan4: null,
+                                        khoiluong4: null,
+                                        ngan5: null,
+                                        khoiluong5: null,
+                                        ngan6: null,
+                                        khoiluong6: null,
+                                        ngan7: null,
+                                        khoiluong7: null,
+                                        ngan8: null,
+                                        khoiluong8: null,
+                                        ngan9: null,
+                                        khoiluong9: null,
+                                        thanhtoan: null,
+                                        trangthai: null,
+                                        nguoitao: null,
+                                        nguoiduyet: null,
+                                        ghichu: null
+                                    }],
+                                    KH: KH,
+                                    XE: XE,
+                                    TX: TX,
+                                    message: "CREATE"
+                                })
+                            } else {
+                                XE = null;
+                                res.render('../views/pages/form.ejs', {
+                                    User: req.session.User,
+                                    Data: [{
+                                        id: null,
+                                        maHD: null,
+                                        datecreate: time,
+                                        typeHD: null,
+                                        ctyvantaiHD: null,
+                                        kh: null,
+                                        taixe: null,
+                                        xe: null,
+                                        ngan1: null,
+                                        khoiluong1: null,
+                                        ngan2: null,
+                                        khoiluong2: null,
+                                        ngan3: null,
+                                        khoiluong3: null,
+                                        ngan4: null,
+                                        khoiluong4: null,
+                                        ngan5: null,
+                                        khoiluong5: null,
+                                        ngan6: null,
+                                        khoiluong6: null,
+                                        ngan7: null,
+                                        khoiluong7: null,
+                                        ngan8: null,
+                                        khoiluong8: null,
+                                        ngan9: null,
+                                        khoiluong9: null,
+                                        thanhtoan: null,
+                                        trangthai: null,
+                                        nguoitao: null,
+                                        nguoiduyet: null,
+                                        ghichu: null
+                                    }],
+                                    KH: KH,
+                                    XE: XE,
+                                    TX: TX,
+                                    message: "CREATE"
+                                })
+                            }
+                        })
+                    } else {
+                        TX = null;
+                        SelectALL("xebon", (err, data) => {
+                            if (!err) {
+                                XE = data;
+                                res.render('../views/pages/form.ejs', {
+                                    User: req.session.User,
+                                    Data: [{
+                                        id: null,
+                                        maHD: null,
+                                        datecreate: time,
+                                        typeHD: null,
+                                        ctyvantaiHD: null,
+                                        kh: null,
+                                        taixe: null,
+                                        xe: null,
+                                        ngan1: null,
+                                        khoiluong1: null,
+                                        ngan2: null,
+                                        khoiluong2: null,
+                                        ngan3: null,
+                                        khoiluong3: null,
+                                        ngan4: null,
+                                        khoiluong4: null,
+                                        ngan5: null,
+                                        khoiluong5: null,
+                                        ngan6: null,
+                                        khoiluong6: null,
+                                        ngan7: null,
+                                        khoiluong7: null,
+                                        ngan8: null,
+                                        khoiluong8: null,
+                                        ngan9: null,
+                                        khoiluong9: null,
+                                        thanhtoan: null,
+                                        trangthai: null,
+                                        nguoitao: null,
+                                        nguoiduyet: null,
+                                        ghichu: null
+                                    }],
+                                    KH: KH,
+                                    XE: XE,
+                                    TX: TX,
+                                    message: "CREATE"
+                                })
+                            } else {
+                                XE = null;
                                 res.render('../views/pages/form.ejs', {
                                     User: req.session.User,
                                     Data: [{
@@ -343,6 +531,15 @@ router.get('/DELETE', (req, res) => {
     DeleteDH(req.query.id).then((result) => {
         res.redirect("/DH");
         //GHI DU LIEU XUONG PLC
+    })
+});
+router.get('/CHECK', (req, res) => {
+    CheckDH(req.query.id).then((result) => {
+        res.redirect("/DH");
+        //GHI DU LIEU XUONG PLC
+    }).catch(err => {
+        console.log(err);
+        res.redirect("/DH");
     })
 });
 module.exports = router;

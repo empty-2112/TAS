@@ -1,8 +1,20 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const { SelectALL, InsertXB, SelectByIDFromXB, UpdateXB, DeleteXB } = require('../model/CRUD');
 
 express().set('view engine', 'ejs');
+
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/Storage')
+    },
+    filename: function(req, file, cb) {
+        cb(null, 'TX' + file.originalname.split('.')[0] + '-' + Date.now() + '.' + file.originalname.split('.')[1])
+    }
+})
+
+var upload = multer({ storage: storage });
 
 router.get('/', (req, res) => {
     if (req.session.User == undefined || req.session.isAuth == false) {
@@ -10,7 +22,10 @@ router.get('/', (req, res) => {
     } else {
         SelectALL("XEBON", (err, data) => {
             if (err) {
-
+                res.render('../views/pages/xebon.ejs', {
+                    User: req.session.User,
+                    Data: null
+                });
             } else {
                 data.forEach(element => {
                     var time1 = new Date(element.ngayhetvn);
@@ -50,20 +65,38 @@ router.get('/CREATE', (req, res) => {
         })
     }
 });
-router.post('/CREATE', (req, res) => {
+router.post('/CREATE', upload.array('Storage', 10), (req, res, next) => {
     if (req.session.User == undefined || req.session.isAuth == false) {
         res.redirect("/user/login");
     } else {
+        let ngayhetvn, ngayhetvt;
+        if (req.body.para9 == '') {
+            ngayhetvn = null;
+        } else {
+            ngayhetvn = req.body.para9;
+        }
+        if (req.body.para7 == '') {
+            ngayhetvt = null;
+        } else {
+            ngayhetvt = req.body.para7;
+        }
+        let bienso = req.body.para1;
+        let taitrong = req.body.para2;
+        let chuxe = req.body.para3;
+        let giaycn = req.body.para5;
+        let giayphepvt = req.body.para6;
+        let sokhung = req.body.para4;
+        let note = req.body.para8;
         InsertXB({
-            bienso: req.body.para1,
-            taitrong: req.body.para2,
-            chuxe: req.body.para3,
-            giaycn: req.body.para5,
-            ngayhetvn: req.body.para9,
-            giayphepvt: req.body.para6,
-            ngayhetvt: req.body.para7,
-            sokhung: req.body.para4,
-            note: req.body.para8,
+            bienso: bienso,
+            taitrong: taitrong,
+            chuxe: chuxe,
+            giaycn: giaycn,
+            ngayhetvn: ngayhetvn,
+            giayphepvt: giayphepvt,
+            ngayhetvt: ngayhetvt,
+            sokhung: sokhung,
+            note: note,
         }).then((result) => {
             res.redirect("/XB");
         })

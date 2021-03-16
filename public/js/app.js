@@ -137,6 +137,98 @@
     "use strict";
 
     Metis.dashboard = function() {
+        //
+        $.ajax({
+            type: "POST",
+            async: true,
+            url: "/dashboard/data",
+            success: function(data) {
+                $("#waitting").html(data[0].waitting);
+                $("#checked").html(data[1].checked);
+                $("#running").html(data[2].running);
+                $("#success").html(data[3].success);
+            }
+        });
+        //
+        let d1 = [],
+            d2 = [];
+        $.ajax({
+            type: "POST",
+            async: true,
+            url: "/dashboard/data/DO",
+            success: function(data) {
+                for (let x in data) {
+                    d1.push((data[x])[0].TotalDO0001);
+                    d2.push((data[x])[0].TotalDO005);
+                }
+            }
+        });
+        let kh = [],
+            dh = [];
+        $.ajax({
+            type: "POST",
+            async: true,
+            url: "/dashboard/data/DH",
+            success: function(data) {
+                if (data.length > 1) {
+                    for (let x in data) {
+                        kh.push((data[x]).tenKH);
+                        dh.push((data[x]).soDH);
+                    }
+                } else {
+                    kh = null;
+                    dh = null;
+                }
+            }
+        });
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx1 = document.getElementById('myChart1').getContext('2d');
+        var myBar = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [{
+                    label: 'DO 0.05%',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: d2
+                }, {
+                    label: 'DO 0.001%',
+                    borderColor: 'rgb(0, 255, 0)',
+                    data: d1
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+        var myDoughnutChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: kh,
+                datasets: [{
+                    label: "Tổng số đơn hàng của từng khách hàng",
+                    minBarLength: 0,
+                    backgroundColor: 'rgb(255, 0, 255)',
+                    borderColor: 'rgb(0, 0, 255)',
+                    data: dh,
+                    borderWidth: 1,
+
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0, // minimum will be 0, unless there is a lower value.
+                            // OR //
+                            beginAtZero: true // minimum value will be 0.
+                        }
+                    }]
+                }
+            },
+        });
 
         //----------- BEGIN SPARKLINE CODE -------------------------*/
         // required jquery.sparkline.min.js*/
@@ -159,8 +251,8 @@
 
         $(".sparkline.bar_week").sparkline([5, 6, 7, 2, 0, -4, -2, 4], {
             type: 'bar',
-            height: '40',
-            barWidth: 5,
+            height: 'auto',
+            barWidth: 50,
             barColor: '#4d6189',
             negBarColor: '#a20051'
         });
@@ -189,6 +281,8 @@
 
         //----------- BEGIN FULLCALENDAR CODE -------------------------*/
 
+
+
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
@@ -199,14 +293,17 @@
             async: true,
             url: "/dashboard/data1/index",
             success: function(data) {
-                for (let x in data) {
-                    data1.push({
-                        title: data[x].maHD,
-                        start: new Date(data[x].datecreate),
-                        url: '/DH/DETAIL?id=' + data[x].id
-                    })
+                if (data != "Data Emty") {
+                    for (let x in data) {
+                        data1.push({
+                            title: data[x].maHD,
+                            start: new Date(data[x].datecreate),
+                            url: '/DH/DETAIL?id=' + data[x].id
+                        })
+                    }
+                } else {
+
                 }
-                console.log(data1);
                 var calendar = $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,today,next,',
