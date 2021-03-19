@@ -3,9 +3,9 @@ const express = require('express');
 const fs = require('fs');
 const multer = require('multer');
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { SelectByUserNameFromTK, findOne } = require('./model/CRUD');
+const auth = require('./middleware/auth');
 //
 const app = express();
 const publicDirectoryPath = path.join(__dirname, './public');
@@ -25,7 +25,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -35,20 +34,20 @@ app.use(session({
 
 app.get("/", (req, res) => {
     if (req.session.User == undefined || req.session.isAuth == false) {
-        res.redirect("/login")
+        res.redirect("/user/login")
     } else {
         res.redirect("/dashboard")
     }
 })
 
 
-app.use('/dashboard', require('./routes/dashboard'));
+app.use('/dashboard', auth, require('./routes/dashboard'));
 app.use('/user', require('./routes/user'));
-app.use('/DH', require('./routes/DH'));
-app.use('/TX', require('./routes/TX'));
-app.use('/XB', require('./routes/XB'));
-app.use('/KH', require('./routes/KH'));
-app.use('/TK', require('./routes/TK'));
+app.use('/DH', auth, require('./routes/DH'));
+app.use('/TX', auth, require('./routes/TX'));
+app.use('/XB', auth, require('./routes/XB'));
+app.use('/KH', auth, require('./routes/KH'));
+app.use('/TK', auth, require('./routes/TK'));
 app.listen(80, () => {
     console.log('Server is up on port 80.')
 });

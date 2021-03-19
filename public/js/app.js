@@ -199,7 +199,19 @@
             },
 
             // Configuration options go here
-            options: {}
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            suggestedMin: 0, // minimum will be 0, unless there is a lower value.
+                            // OR //
+                            beginAtZero: true // minimum value will be 0.
+                        }
+                    }]
+                }
+            }
         });
         var myDoughnutChart = new Chart(ctx1, {
             type: 'bar',

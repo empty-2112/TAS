@@ -1,18 +1,33 @@
 const mysql = require("mysql");
+const db_config = {
+    host: 'localhost',
+    user: 'minhthang',
+    password: '!Minh@Thang123#',
+    database: 'hoakhanh',
+    port: '3306'
+};
+var connection;
 
-const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'admin123',
-        database: 'hoakhanh',
-        port: '3306'
-    })
-    //Connect to MySQL
-connection.connect((err) => {
-    if (err) {
-        console.log(err)
-    }
-});
+function handleDisconnect() {
+    connection = mysql.createConnection(db_config)
+        //Connect to MySQL
+    connection.connect((err) => {
+        if (err) {
+            console.log(err);
+            setTimeout(handleDisconnect, 2000);
+        }
+    });
+    connection.on('error', (err) => {
+        console.log('db error', err);
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+            handleDisconnect(); // lost due to either server restart, or a
+        } else { // connnection idle timeout (the wait_timeout
+            throw err; // server variable configures this)
+        }
+    });
+}
+
+handleDisconnect();
 
 const SelectALL = function(para1, callback) {
     let query = 'SELECT * from ??;';
