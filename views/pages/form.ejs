@@ -786,8 +786,10 @@
                                                                                         <input type="submit" value="CREATE" class="btn btn-primary">
                                                                                         <%}%>
                                                                                             <% if(User.Position == "Vận Hành") {%>
-                                                                                                <input type="submit" value="Chuẩn bị xuất" class="btn btn-primary">
-                                                                                                <%}%>
+                                                                                                <% if(Data[0].trangthai == "Đã duyệt") {%>
+                                                                                                    <input type="submit" value="Chuẩn bị xuất" class="btn btn-primary">
+                                                                                                    <%}%>
+                                                                                                        <%}%>
                                                                         </div>
                                                                 </form>
                                 </div>

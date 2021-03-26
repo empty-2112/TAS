@@ -1,8 +1,8 @@
 const mysql = require("mysql");
 const db_config = {
     host: 'localhost',
-    user: 'minhthang',
-    password: '!Minh@Thang123#',
+    user: 'root',
+    password: 'admin123',
     database: 'hoakhanh',
     port: '3306'
 };
@@ -99,7 +99,6 @@ var UpdateTK = function(para) {
 
                 } else if (data.changedRows == 1 && data.affectedRows == 1) {
                     resolve("Success");
-
                 }
             }
         })
@@ -796,4 +795,132 @@ var findOne = function(para) {
         })
     })
 };
-module.exports = { SelectALL, SelectByUserNameFromTK, SelectByIDFromTK, UpdateTK, InsertTK, DeleteTK, SelectByIDFromKH, UpdateKH, InsertKH, DeleteKH, SelectByIDFromTX, UpdateTX, InsertTX, DeleteTX, SelectByIDFromXB, InsertXB, UpdateXB, DeleteXB, SelectByIDFromDH, SelectALLDH, CreateMaHD, InsertDH, UpdateDH, DeleteDH, UpdateStatusDH, DOofMonth, DHOfCustomer, StatusSuccess, StatusRunning, StatusCheck, StatusWait, CheckDH, UpdatePassword, findOne }
+
+var ALLDHSuccess = function() {
+    return new Promise((resolve, reject) => {
+        var query = `select donhang.id,donhang.maHD,donhang.datecreate,khachhang.tenKH,taixe.cmnd,xebon.bienso,donhang.ngan1,donhang.khoiluong1,donhang.ngan2,donhang.khoiluong2,donhang.ngan3,donhang.khoiluong3,donhang.ngan4,donhang.khoiluong4,donhang.ngan5,donhang.khoiluong5,donhang.ngan6,donhang.khoiluong6,donhang.ngan7,donhang.khoiluong7,donhang.ngan8,donhang.khoiluong8,donhang.ngan9,donhang.khoiluong9,donhang.trangthai,donhang.nguoitao,donhang.ghichu,taixe.tenTX
+        FROM hoakhanh.donhang
+        join hoakhanh.khachhang on khachhang.id = donhang.kh
+        join hoakhanh.taixe on taixe.id = donhang.taixe
+        join hoakhanh.xebon on xebon.id = donhang.xe
+        where hoakhanh.donhang.trangthai = "Hoàn thành";`;
+        connection.query(query, (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+
+            } else {
+                if (data.length == 0) {
+                    reject("Not Found");
+
+                } else {
+                    resolve(data);
+
+                }
+            }
+        })
+    })
+};
+var ReportDH = function(para) {
+    return new Promise((resolve, reject) => {
+        var query = `select donhang.id,donhang.maHD,donhang.datecreate,khachhang.tenKH,taixe.cmnd,xebon.bienso,donhang.ngan1,donhang.khoiluong1,donhang.ngan2,donhang.khoiluong2,donhang.ngan3,donhang.khoiluong3,donhang.ngan4,donhang.khoiluong4,donhang.ngan5,donhang.khoiluong5,donhang.ngan6,donhang.khoiluong6,donhang.ngan7,donhang.khoiluong7,donhang.ngan8,donhang.khoiluong8,donhang.ngan9,donhang.khoiluong9,donhang.trangthai,donhang.nguoitao,donhang.ghichu,taixe.tenTX,taixe.ngaycap
+        FROM hoakhanh.donhang
+        join hoakhanh.khachhang on khachhang.id = donhang.kh
+        join hoakhanh.taixe on taixe.id = donhang.taixe
+        join hoakhanh.xebon on xebon.id = donhang.xe
+        where hoakhanh.donhang.id =?;`;
+        connection.query(query, [para], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.length == 0) {
+                    reject("Not Found");
+                } else {
+                    resolve(data);
+                }
+            }
+        })
+    })
+};
+
+var UpdateTGBDXuat = function(para) {
+    return new Promise((resolve, reject) => {
+        var query = `update DONHANG SET tgbatdau =? where donhang.id =? and donhang.trangthai = "Đang xuất";`;
+        var query2 = `SELECT donhang.id FROM hoakhanh.donhang where donhang.maHD =? and donhang.tgbatdau is null;`;
+        connection.query(query2, [para[1]], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                var id;
+                if (data[0].id == undefined) {
+                    id = data.id;
+                } else {
+                    id = data[0].id;
+                }
+                connection.query(query, [para[0], id], (err, result, fields) => {
+                    if (err) {
+                        reject(err.stack);
+                    } else {
+                        console.log(result);
+                        if (result.changedRows == 0 && result.affectedRows == 1) {
+                            reject("Update Fail");
+                        } else if (result.changedRows == 0 && result.affectedRows == 0) {
+                            reject("Not Found");
+                        } else if (result.changedRows == 1 && result.affectedRows == 1) {
+                            resolve("Success");
+                        }
+                    }
+                })
+            }
+        })
+
+    })
+};
+var UpdateTGXXuat = function(para) {
+    return new Promise((resolve, reject) => {
+        var query = `update DONHANG SET donhang.tgxong =?, donhang.trangthai = "Hoàn thành" where donhang.maHD =? and donhang.trangthai = "Đang xuất";`;
+
+        var query2 = `SELECT donhang.id FROM hoakhanh.donhang where donhang.maHD =? and donhang.tgxong is null;`;
+
+        connection.query(query2, [para[1]], (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                connection.query(query, para, (err, data, fields) => {
+                    if (err) {
+                        reject(err.stack);
+                    } else {
+                        if (data.changedRows == 0 && data.affectedRows == 1) {
+                            reject("Update Fail");
+                        } else if (data.changedRows == 0 && data.affectedRows == 0) {
+                            reject("Not Found");
+                        } else if (data.changedRows == 1 && data.affectedRows == 1) {
+                            resolve("Success");
+                        }
+                    }
+                })
+            }
+        })
+
+    })
+};
+var UpdateStatusDH2 = function(para) {
+    return new Promise((resolve, reject) => {
+        var query = 'Update DONHANG SET trangthai=? where id=?;';
+        connection.query(query, para, (err, data, fields) => {
+            if (err) {
+                reject(err.stack);
+            } else {
+                if (data.changedRows == 0 && data.affectedRows == 1) {
+                    reject("Update Fail");
+                } else if (data.changedRows == 0 && data.affectedRows == 0) {
+                    reject("Not Found");
+                } else if (data.changedRows == 1 && data.affectedRows == 1) {
+                    resolve("Success");
+                }
+            }
+        })
+    })
+};
+
+
+module.exports = { SelectALL, SelectByUserNameFromTK, SelectByIDFromTK, UpdateTK, InsertTK, DeleteTK, SelectByIDFromKH, UpdateKH, InsertKH, DeleteKH, SelectByIDFromTX, UpdateTX, InsertTX, DeleteTX, SelectByIDFromXB, InsertXB, UpdateXB, DeleteXB, SelectByIDFromDH, SelectALLDH, CreateMaHD, InsertDH, UpdateDH, DeleteDH, UpdateStatusDH, DOofMonth, DHOfCustomer, StatusSuccess, StatusRunning, StatusCheck, StatusWait, CheckDH, UpdatePassword, findOne, ALLDHSuccess, ReportDH, UpdateTGBDXuat, UpdateTGXXuat, UpdateStatusDH2 }

@@ -170,11 +170,39 @@
             async: true,
             url: "/dashboard/data/DH",
             success: function(data) {
-                if (data.length > 1) {
+                if (data.length > 0) {
                     for (let x in data) {
                         kh.push((data[x]).tenKH);
                         dh.push((data[x]).soDH);
                     }
+                    var myDoughnutChart = new Chart(ctx1, {
+                        type: 'bar',
+                        data: {
+                            labels: kh,
+                            datasets: [{
+                                label: "Tổng số đơn hàng của từng khách hàng",
+                                minBarLength: 0,
+                                backgroundColor: 'rgb(255, 0, 255)',
+                                borderColor: 'rgb(0, 0, 255)',
+                                data: dh,
+                                borderWidth: 1,
+
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                yAxes: [{
+                                    display: true,
+                                    ticks: {
+                                        suggestedMin: 0, // minimum will be 0, unless there is a lower value.
+                                        // OR //
+                                        beginAtZero: true // minimum value will be 0.
+                                    }
+                                }]
+                            }
+                        },
+                    });
                 } else {
                     kh = null;
                     dh = null;
@@ -213,34 +241,7 @@
                 }
             }
         });
-        var myDoughnutChart = new Chart(ctx1, {
-            type: 'bar',
-            data: {
-                labels: kh,
-                datasets: [{
-                    label: "Tổng số đơn hàng của từng khách hàng",
-                    minBarLength: 0,
-                    backgroundColor: 'rgb(255, 0, 255)',
-                    borderColor: 'rgb(0, 0, 255)',
-                    data: dh,
-                    borderWidth: 1,
 
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            suggestedMin: 0, // minimum will be 0, unless there is a lower value.
-                            // OR //
-                            beginAtZero: true // minimum value will be 0.
-                        }
-                    }]
-                }
-            },
-        });
 
         //----------- BEGIN SPARKLINE CODE -------------------------*/
         // required jquery.sparkline.min.js*/
