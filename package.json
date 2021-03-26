@@ -12,7 +12,10 @@
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.1",
+<<<<<<< HEAD
         "biguint-format": "^1.0.2",
+=======
+>>>>>>> 7accd917b6ecfb14c92162d8c0eae7d3027f54c1
         "ejs": "^3.1.6",
         "exceljs": "^4.2.1",
         "express": "^4.17.1",

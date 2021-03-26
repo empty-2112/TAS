@@ -6,8 +6,11 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const { SelectByUserNameFromTK, findOne } = require('./model/CRUD');
 const auth = require('./middleware/auth');
+<<<<<<< HEAD
 const ScanPLC = require("./model/ScanPLC");
 const { request } = require('https');
+=======
+>>>>>>> 7accd917b6ecfb14c92162d8c0eae7d3027f54c1
 //
 const app = express();
 const publicDirectoryPath = path.join(__dirname, './public');
@@ -51,6 +54,7 @@ app.use('/TX', auth, require('./routes/TX'));
 app.use('/XB', auth, require('./routes/XB'));
 app.use('/KH', auth, require('./routes/KH'));
 app.use('/TK', auth, require('./routes/TK'));
+<<<<<<< HEAD
 app.use('/Report', auth, require('./routes/Report'));
 
 //
@@ -70,6 +74,8 @@ app.use((err, req, res, next) => {
 });
 //ScanPLC
 
+=======
+>>>>>>> 7accd917b6ecfb14c92162d8c0eae7d3027f54c1
 app.listen(80, () => {
     console.log('Server is up on port 80.')
 });
